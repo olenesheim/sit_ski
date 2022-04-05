@@ -28,7 +28,7 @@ def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
 
-    f = open("test5.txt", "w+")
+    f = open("test4.txt", "w+")
 
 #    while True:
     for i in range(50):
