@@ -31,7 +31,7 @@ def main():
 
     while True:
 
-        acc = get_total_acceleration(mpu1)
+        acc = get_total_acceleration(mpu2)
         print(acc)
 
 
