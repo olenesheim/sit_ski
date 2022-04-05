@@ -35,7 +35,7 @@ def main():
 
         acc = get_total_acceleration(mpu2)
         print(acc)
-        f.write("acc = %d\n" % acc)
+        f.write("acc = %s\n" % acc)
 
         time.sleep(0.5)
     f.close()
