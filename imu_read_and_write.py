@@ -20,8 +20,14 @@ def write_to_file(filename, data):
     return 0
 
 def main():
-    mpu1 = mpu6050(0x68)
-    mpu1 = mpu6050(0x????) #Fill out adress
+    mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
+    mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
+
+    while True:
+        acc1 = mpu1.get_accel_data()
+        acc2 = mpu2.get_accel_data()
+
+        print("Sensor 1: ", acc1, "; Sensor 2: ", acc2, "\n")
 
 
 
