@@ -1,3 +1,4 @@
+from cmath import sqrt
 from unicodedata import name
 from mpu6050 import mpu6050
 import time
@@ -11,9 +12,14 @@ def create_file():
 def get_acceleration(sensor):
     return 0
 
-#Calculates the total acceleration from x, y and z acceleration
-def get_total_acceleration(acc_x, acc_y, acc_z):
-    return 0
+#Takes in a sensor and returns the total accelearation based on 3D pytagoras
+def get_total_acceleration(sensor):
+    acc = sensor.get_accel_data()
+    acc_x = acc['x']
+    acc_y = acc['y']
+    acc_z = acc['z']
+    total_acceleration = sqrt(acc_x*acc_x + acc_y*acc_y + acc_z*acc_z)
+    return total_acceleration
 
 #Takes in filename and writes data into the .txt file
 def write_to_file(filename, data):
@@ -24,10 +30,15 @@ def main():
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
 
     while True:
-        acc1 = mpu1.get_accel_data()
-        acc2 = mpu2.get_accel_data()
 
-        print("Sensor 1: ", str(acc1['x']), "; Sensor 2: ", str(acc2['x']), "\n")
+        acc = get_total_acceleration(mpu1)
+        print(acc)
+
+
+  #      acc1 = mpu1.get_accel_data()
+ #       acc2 = mpu2.get_accel_data()
+
+#        print("Sensor 1: ", str(acc1['x']), "; Sensor 2: ", str(acc2['x']), "\n")
         time.sleep(0.05)
 
 
