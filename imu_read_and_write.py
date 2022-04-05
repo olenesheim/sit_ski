@@ -28,7 +28,7 @@ def main():
         acc2 = mpu2.get_accel_data()
 
         print("Sensor 1: ", str(acc1['x']), "; Sensor 2: ", str(acc2['x']), "\n")
-        time.sleep(0.2)
+        time.sleep(0.05)
 
 
 
