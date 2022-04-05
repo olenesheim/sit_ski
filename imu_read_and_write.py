@@ -28,7 +28,7 @@ def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
 
-    f = open("test.txt", "w+")
+    f = open("test5.txt", "w+")
 
 #    while True:
     for i in range(50):
@@ -39,7 +39,9 @@ def main():
         print("%s;%s\n" % (acc1, acc2))
 
         #f.write("%s;%s\n" % (acc1, acc2))
-        f.write(f"{acc1:.5f};{acc2:.5f}\n")
+        acc1string = f"{acc1:.5f}".split("+")[0]
+        acc2string = f"{acc2:.5f}".split("+")[0]
+        f.write(f"{acc1string};{acc2string}\n")
 
         time.sleep(0.5)
     f.close()
