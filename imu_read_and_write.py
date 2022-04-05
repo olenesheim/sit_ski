@@ -28,14 +28,16 @@ def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
 
-    f = open("test1.txt", "w+")
+    f = open("test2.txt", "w+")
 
 #    while True:
-    for i in range(100):
+    for i in range(20):
 
-        acc = get_total_acceleration(mpu2)
-        print(acc)
-        f.write("acc = %s\n" % acc)
+        acc1 = get_total_acceleration(mpu1)
+        acc2 = get_total_acceleration(mpu2)
+
+        print(acc1, ";", acc2)
+        f.write(acc1, ";", acc2)
 
         time.sleep(0.5)
     f.close()
