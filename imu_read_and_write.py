@@ -27,7 +27,8 @@ def main():
         acc1 = mpu1.get_accel_data()
         acc2 = mpu2.get_accel_data()
 
-        print("Sensor 1: ", acc1, "; Sensor 2: ", acc2, "\n")
+        print("Sensor 1: ", str(acc1['x']), "; Sensor 2: ", str(acc2['x']), "\n")
+        time.sleep(0.2)
 
 
 
