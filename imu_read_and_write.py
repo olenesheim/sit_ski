@@ -12,14 +12,26 @@ def get_total_acceleration(sensor):
     total_acceleration = sqrt(acc_x*acc_x + acc_y*acc_y + acc_z*acc_z)
     return total_acceleration
 
+#Takes in filename and writes data into the .txt file.
+#freq is the frequency of the measurements, no_datapoints is the number of datapoints
+def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
+    
+    f = open(filename, "w+")
 
-#Takes in filename and creates a .txt file for later use
-def create_file():
-    created_file = 0
-    return created_file
+    for i in range (no_datapoints):
 
-#Takes in filename and writes data into the .txt file
-def write_to_file(filename, data):
+        acc1 = get_total_acceleration(sensor1)
+        acc2 = get_total_acceleration(sensor2)
+
+        acc1string = f"{acc1:.5f}".split("+")[0]
+        acc2string = f"{acc2:.5f}".split("+")[0]
+
+        f.write(f"{acc1string};{acc2string}\n")
+
+        time.sleep(1/freq)
+
+    f.close()
+    
     return 0
 
 
@@ -28,23 +40,7 @@ def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
 
-    f = open("test4.txt", "w+")
-
-#    while True:
-    for i in range(50):
-
-        acc1 = get_total_acceleration(mpu1)
-        acc2 = get_total_acceleration(mpu2)
-
-        print("%s;%s\n" % (acc1, acc2))
-
-        #f.write("%s;%s\n" % (acc1, acc2))
-        acc1string = f"{acc1:.5f}".split("+")[0]
-        acc2string = f"{acc2:.5f}".split("+")[0]
-        f.write(f"{acc1string};{acc2string}\n")
-
-        time.sleep(0.5)
-    f.close()
+    write_to_file(4, 100, "test5.txt", mpu1, mpu2)
 
 
 
