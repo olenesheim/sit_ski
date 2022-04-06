@@ -22,7 +22,8 @@ def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
         acc2 = get_total_acceleration(sensor2)  #Getting acceleration data from sensor 2 (Chest)
         #print(f"{acc1:.5f}".split("+")[0], "       ", f"{acc2:.5f}".split("+")[0])
         full_acc1 = sensor1.get_accel_data()
-        print(full_acc1)
+        full_acc2 = sensor2.get_accel_data()
+        print(full_acc1, "         ", full_acc2)
         acc1string = f"{acc1:.5f}".split("+")[0]
         acc2string = f"{acc2:.5f}".split("+")[0]
         f.write(f"{acc1string};{acc2string}\n")
