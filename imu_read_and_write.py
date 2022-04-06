@@ -35,7 +35,7 @@ def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
 def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
-    write_to_file(4, 300, "test12.txt", mpu1, mpu2)  #Writes the sesnsor data from both sensors into a text file
+    write_to_file(4, 300, "test13.txt", mpu1, mpu2)  #Writes the sesnsor data from both sensors into a text file
 
 if __name__ == "__main__":
     main()

@@ -21,7 +21,7 @@ def file_to_array(filename):
 
 #Takes in 2 columns of acceleration and plots them and the difference between
 def plot_acceleration(acc1, acc2):
-    x = np.linspace(0, len(acc1) - 1, 100)
+    x = np.linspace(0, len(acc1) - 1, 300)
     fig, axs = plt.subplots(2)
     fig.suptitle("Sensors")
     axs[0].plot(x, acc1)
@@ -42,7 +42,7 @@ def plot_acceleration(acc1, acc2):
 
 
 def main():
-    acc1, acc2 = file_to_array("test9.txt")
+    acc1, acc2 = file_to_array("test12.txt")
     plot_acceleration(acc1, acc2)
     return 0
 
