@@ -18,9 +18,10 @@ def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
     f = open(filename, "w+")
 
     for i in range (no_datapoints):
-        acc1 = get_total_acceleration(sensor1)
-        acc2 = get_total_acceleration(sensor2)
-        print(f"{acc1:.5f}".split("+")[0], "       ", f"{acc2:.5f}".split("+")[0])
+        acc1 = get_total_acceleration(sensor1)  #Getting acceleration data from sensor 1 (still sensor)
+        acc2 = get_total_acceleration(sensor2)  #Getting acceleration data from sensor 2 (Chest)
+        #print(f"{acc1:.5f}".split("+")[0], "       ", f"{acc2:.5f}".split("+")[0])
+        print(acc2)
         acc1string = f"{acc1:.5f}".split("+")[0]
         acc2string = f"{acc2:.5f}".split("+")[0]
         f.write(f"{acc1string};{acc2string}\n")
@@ -32,7 +33,7 @@ def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
 def main():
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
     mpu2 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
-    write_to_file(4, 100, "test5.txt", mpu1, mpu2)  #Writes the sesnsor data from both sensors into a text file
+    write_to_file(4, 300, "test5.txt", mpu1, mpu2)  #Writes the sesnsor data from both sensors into a text file
 
 if __name__ == "__main__":
     main()

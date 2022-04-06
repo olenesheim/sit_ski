@@ -42,7 +42,7 @@ def plot_acceleration(acc1, acc2):
 
 
 def main():
-    acc1, acc2 = file_to_array("test8.txt")
+    acc1, acc2 = file_to_array("test9.txt")
     plot_acceleration(acc1, acc2)
     return 0
 
