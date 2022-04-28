@@ -28,6 +28,7 @@ def write_to_file(freq, no_datapoints, filename, sensor1, sensor2):
         acc1 = get_raw_accel_data(sensor1)
         acc2 = get_raw_accel_data(sensor2)
         print(acc1, "       ", acc2)
+        f.write(f"{acc1};{acc2}\n")
         #print(f"{acc1:.5f}".split("+")[0], "       ", f"{acc2:.5f}".split("+")[0])
         time.sleep(1/freq)
 
