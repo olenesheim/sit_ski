@@ -8,7 +8,7 @@ import time
 def safe_exit(signum, frame):
     exit(1)
 
-def write_to_lcd():
+def write_to_lcd(text):
 
     lcd = LCD()
 
@@ -16,8 +16,7 @@ def write_to_lcd():
     signal(SIGHUP, safe_exit)
 
     try:
-        lcd.text("Hello", 1)
-        lcd.text("Hupaess", 2)
+        lcd.text(text, 1)
         pause()
 
     except KeyboardInterrupt:
@@ -47,7 +46,9 @@ def write_to_file(freq, no_datapoints, filename, sensor):
     for i in range (no_datapoints):
         acc = get_total_acceleration(sensor)
         acc = acc.real
-        print("Gravity: " + str(round(acc_to_g(acc), 2)) + "G")
+        text = str(round(acc_to_g(acc), 2)) + "G"
+        print("Gravity: " + text)
+        write_to_lcd(text, 1)
         #print(acc)
         f.write(f"{acc}\n")
         time.sleep(1/freq)
@@ -57,7 +58,6 @@ def write_to_file(freq, no_datapoints, filename, sensor):
 
 def main(filename, freq, no_datapoints):
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
-    write_to_lcd()
     write_to_file(int(freq), int(no_datapoints), filename, mpu1)  #Writes the sesnsor data from both sensors into a text file
 
 if __name__ == "__main__":
