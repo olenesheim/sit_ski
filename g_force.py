@@ -23,6 +23,7 @@ def write_to_file(freq, no_datapoints, filename, sensor):
 
     for i in range (no_datapoints):
         acc = get_total_acceleration(sensor)
+        acc = f"{acc}".split(";")[0]
         #print("Gravity: " + str(round(acc_to_g(acc), 2)) + "G")
         print(acc)
         f.write(f"{acc}\n")
