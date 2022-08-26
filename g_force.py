@@ -9,21 +9,11 @@ def safe_exit(signum, frame):
     exit(1)
 
 def write_to_lcd(text):
-
     lcd = LCD()
-
     signal(SIGTERM, safe_exit)
     signal(SIGHUP, safe_exit)
-
-    try:
-        lcd.text(text, 1)
-        pause()
-
-    except KeyboardInterrupt:
-        pass
-
-    finally:
-        lcd.clear()
+    lcd.text(text, 1)
+    return 0
 
 #Takes in a sensor and returns the total accelearation based on the euclidean vector norm
 def get_total_acceleration(sensor):
