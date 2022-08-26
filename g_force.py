@@ -1,7 +1,30 @@
 from mpu6050 import mpu6050
 from cmath import sqrt
+from signal import signal, SIGTERM, SIGHUP, pause
+from rpi_lcd import LCD 
 import sys
 import time
+
+def safe_exit(signum, frame):
+    exit(1)
+
+def write_to_lcd():
+
+    lcd = LCD()
+
+    signal(SIGTERM, safe_exit)
+    signal(SIGHUP, safe_exit)
+
+    try:
+        lcd.text("Hello", 1)
+        lcd.text("Hupaess", 2)
+        pause()
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        lcd.clear()
 
 #Takes in a sensor and returns the total accelearation based on the euclidean vector norm
 def get_total_acceleration(sensor):
@@ -34,6 +57,7 @@ def write_to_file(freq, no_datapoints, filename, sensor):
 
 def main(filename, freq, no_datapoints):
     mpu1 = mpu6050(0x68, 1)     #Inititalizes mpu6050 on bus 1
+    write_to_lcd()
     write_to_file(int(freq), int(no_datapoints), filename, mpu1)  #Writes the sesnsor data from both sensors into a text file
 
 if __name__ == "__main__":
