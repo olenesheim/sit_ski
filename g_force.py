@@ -48,7 +48,7 @@ def write_to_file(freq, no_datapoints, filename, sensor):
         acc = acc.real
         text = str(round(acc_to_g(acc), 2)) + "G"
         print("Gravity: " + text)
-        write_to_lcd(text, 1)
+        write_to_lcd(text)
         #print(acc)
         f.write(f"{acc}\n")
         time.sleep(1/freq)
