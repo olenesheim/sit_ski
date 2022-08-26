@@ -29,3 +29,10 @@ def write_to_file(freq, no_datapoints, filename, sensor):
 
     f.close()    
     return 0
+
+def main(filename, freq, no_datapoints):
+    mpu1 = mpu6050(0x68, 3)     #Inititalizes mpu6050 on bus 3
+    write_to_file(int(freq), int(no_datapoints), filename, mpu1)  #Writes the sesnsor data from both sensors into a text file
+
+if __name__ == "__main__":
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
